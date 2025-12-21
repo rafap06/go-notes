@@ -77,3 +77,4 @@ func authMiddleware(c *fiber.Ctx) error {
 	return c.Next()
 }
 //para testar o CI
+//para testar o CI
