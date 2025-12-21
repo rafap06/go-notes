@@ -76,3 +76,4 @@ func authMiddleware(c *fiber.Ctx) error {
 	c.Locals("username", sess.Get("username"))
 	return c.Next()
 }
+//para testar o CI
