@@ -15,8 +15,7 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.21'
-          cache: true
-          cache-dependency-path: go.sum 
+          cache: false # Desativa a cache para evitar o erro de 'Dependencies file not found'
 
       - name: Compilar Aplicação
         run: go build -v .
