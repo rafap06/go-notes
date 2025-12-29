@@ -12,10 +12,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configurar Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
-          go-version: '1.21'
-          cache: false # Desativa a cache para evitar o erro de 'Dependencies file not found'
+          go-version: '1.24'
+          cache: false
 
       - name: Compilar Aplicação
         run: go build -v .
@@ -31,8 +31,10 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_IP }}
-          username: aluno
+          username: appuser
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/appuser/go-notes
-            sudo ./deploy.sh
+            git pull origin main
+            chmod +x deploy.sh
+            ./deploy.sh
